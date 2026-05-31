@@ -9,6 +9,7 @@ import './App.css'
 
 import axios from 'axios';
 
+const url = "https://urinal-machine-production-f548.up.railway.app/"
 
 const generateUrinals = () => {
   const urinalState = []
@@ -39,7 +40,7 @@ function App() {
   console.log("HELP")
 
   const sendEntry = async (index) =>{
-    const response = await axios.post(`http://localhost:5000/data`, {
+    const response = await axios.post(`${url}/data`, {
       choice: index,
       situation: urinalState
     })
