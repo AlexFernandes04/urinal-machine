@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import logging
 import csv
+import os
 
 from flask_cors import CORS
 
@@ -14,7 +15,7 @@ from sklearn.preprocessing import OneHotEncoder, PolynomialFeatures
 from sklearn.model_selection import train_test_split
 import warnings 
 warnings.filterwarnings('ignore')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../app/dist')
 CORS(app, origins=["*"])
 
 logging.basicConfig(level=logging.INFO)
@@ -22,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 data = []
 
-data = pd.read_csv("backend/data.csv")
+data = pd.read_csv("data.csv")
 X = data.drop("position", axis=1).values
 y = data.position.values
 
@@ -47,12 +48,14 @@ def writeToCSV(entry):
         writer = csv.writer(file)
         writer.writerow(entry) 
 
-@app.route('/', methods=['GET'])
-def main_page():
-    return jsonify({
-        'Goated?': 'Alex',
-        'Mid?': 'Om',
-    })
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/data', methods=['POST'])
 def receive_data():

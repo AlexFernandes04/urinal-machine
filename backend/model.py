@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 import warnings 
 warnings.filterwarnings('ignore')
 
-data = pd.read_csv("backend/data.csv")
+data = pd.read_csv("data.csv")
 X = data.drop("position", axis=1).values
 y = data.position.values
 
