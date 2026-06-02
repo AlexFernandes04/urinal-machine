@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 3000, // Set your desired port here
-    allowedHosts: ['urinal-machine-production.up.railway.app'], // Allow ngrok subdomains
+    allowedHosts: ['urinal-machine-production.up.railway.app', 'urinal-machine.onrender.com'], // Allow ngrok subdomains
   },
 })
