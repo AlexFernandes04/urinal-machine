@@ -1,3 +1,4 @@
 /app/node_modules
 /backend/venv
 /app/dist
+/backend
