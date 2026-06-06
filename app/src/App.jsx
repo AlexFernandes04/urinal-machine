@@ -12,7 +12,7 @@ import './App.css'
 
 import axios from 'axios';
 
-const url = "https://urinal-machine-production-f548.up.railway.app/"
+const url = "https://urinal-machine-production-07f0.up.railway.app/"
 
 const generateUrinals = () => {
   const urinalState = []
