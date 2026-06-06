@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-const images = ["/urinalEmpty.png", "/urinalPiss.png", "/urinalPerson.png"]
+import urinalEmpty from './assets/urinalEmpty.png'
+import urinalPiss from './assets/urinalPiss.png'
+import urinalPerson from './assets/urinalPerson.png'
+const images = [urinalEmpty, urinalPiss, urinalPerson]
 
 import './App.css'
 
