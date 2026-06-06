@@ -75,20 +75,20 @@ function App() {
 
   return (
     <div className="App p-8 bg-white h-screen">
-      <h1 className='md:text-9xl text-3xl font-bold text-center my-4'>
+      <h1 className='md:text-9xl text-7xl font-bold text-center my-4'>
         Urinal Machine
       </h1>
       <div className='text-center w-full py-2 text-gray-400 text-xl'>
           Select a urinal
         </div>
-      <div className="grid grid-cols-5 gap-4 text-center md:py-0 py-32 md:gap-4 gap-0">
+      <div className="grid grid-cols-5 gap-4 text-center md:py-0 py-24 md:gap-4 gap-0">
         {urinalState.map((urinal, index) => {
           return (<div key = {index}>
             <div key = {index}>
-              <button disabled={urinal===2} className='md:h-96 h-32 w-full bg-white' key = {index} onClick={() => {sendEntry(index)}}>
+              <button disabled={urinal===2} className='lg:h-100 md:h-64 h-32 md:w-30 lg:w-60 bg-white' key = {index} onClick={() => {sendEntry(index)}}>
               <img src={images[urinal]} alt="Urinal" className='h-full w-full'/>
               </button>
-              {loaded == true ? (<h2 className='font-semibold text-xl'>Probability {Number((prediction[index])*100).toFixed(2)} % </h2>) : null}
+              {loaded == true ? (<h2 className='md:font-semibold font-light text-xs w-full text-center md:text-xl'>Probability {Number((prediction[index])*100).toFixed(2)} % </h2>) : null}
 
             </div>
           </div>
@@ -96,8 +96,8 @@ function App() {
         })}
 
       </div>
-      <div className='text-center w-full py-8'>
-        {loaded == false ? null : <button className='border-2 font-bold py-2 px-4 rounded' onClick={makeAnotherSelection}>Make Another Selection</button>}
+      <div className='text-center w-full md:py-12'>
+        {loaded == false ? null : <button className='border-2 font-bold md:py-4 md:px-8 py-2 px-4 rounded md:text-2xl' onClick={makeAnotherSelection}>Make Another Selection</button>}
       </div>
       <div className='text-center w-full absolute inset-x-0 bottom-0 my-4 text-gray-400'>
           {randomState ? <div>owned by Alex ({randomState + 1}%) and Om ({100 - randomState - 1}%) </div> : <div></div>}
