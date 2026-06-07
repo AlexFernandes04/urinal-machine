@@ -42,15 +42,15 @@ function App() {
   //console.log(urinalState)
   console.log("HELP")
 
-  const sendEntry = async (index) =>{
+  const sendEntry = async (index) => {
     const response = await axios.post(`${url}/data`, {
       choice: index,
       situation: urinalState
     })
     console.log(response.data);
     setPrediciton(response.data.prediction);
-    
-    if(loaded == false){
+
+    if (loaded == false) {
       setLoaded(true)
     }
   }
@@ -60,7 +60,7 @@ function App() {
     setUrinalState(generateUrinals())
 
     const num = Math.random()
-    if(num > 0.6){
+    if (num > 0.6) {
       setRandomState(60)
     } else {
       setRandomState(40)
@@ -74,21 +74,21 @@ function App() {
 
 
   return (
-    <div className="App p-8 bg-white h-screen">
-      <h1 className='md:text-9xl text-7xl font-bold text-center my-4'>
+    <div className="App md:px-8 px-2 py-8 bg-white h-screen">
+      <h1 className='md:text-9xl text-7xl font-bold text-center'>
         Urinal Machine
       </h1>
       <div className='text-center w-full py-2 text-gray-400 text-xl'>
-          Select a urinal
-        </div>
-      <div className="grid grid-cols-5 gap-4 text-center md:py-0 py-24 md:gap-4 gap-0">
+        Select a urinal
+      </div>
+      <div className="grid grid-cols-5 gap-4 text-center md:py-0 py-12 md:gap-4 gap-0">
         {urinalState.map((urinal, index) => {
-          return (<div key = {index}>
-            <div key = {index}>
-              <button disabled={urinal===2} className='lg:h-100 md:h-64 h-32 md:w-30 lg:w-60 bg-white' key = {index} onClick={() => {sendEntry(index)}}>
-              <img src={images[urinal]} alt="Urinal" className='h-full w-full'/>
+          return (<div key={index}>
+            <div key={index}>
+              <button disabled={urinal === 2} className='lg:h-100 md:h-64 h-32 md:w-30 lg:w-60 bg-white' key={index} onClick={() => { sendEntry(index) }}>
+                <img src={images[urinal]} alt="Urinal" className='h-full w-full' />
               </button>
-              {loaded == true ? (<h2 className='md:font-semibold font-light text-xs w-full text-center md:text-xl'>Probability {Number((prediction[index])*100).toFixed(2)} % </h2>) : null}
+              {loaded == true ? (<h2 className='md:font-semibold font-light text-xs w-full text-center md:text-xl'>Probability {Number((prediction[index]) * 100).toFixed(2)} % </h2>) : null}
 
             </div>
           </div>
@@ -97,12 +97,12 @@ function App() {
 
       </div>
       <div className='text-center w-full md:py-12'>
-        {loaded == false ? null : <button className='border-2 font-bold md:py-4 md:px-8 py-2 px-4 rounded md:text-2xl' onClick={makeAnotherSelection}>Make Another Selection</button>}
+        {loaded == false ? null : <button className='border-2 font-bold md:py-4 py-2 px-4 rounded md:text-xl' onClick={makeAnotherSelection}>Make Another Selection</button>}
       </div>
       <div className='text-center w-full absolute inset-x-0 bottom-0 my-4 text-gray-400'>
-          {randomState ? <div>owned by Alex ({randomState + 1}%) and Om ({100 - randomState - 1}%) </div> : <div></div>}
+        {randomState ? <div>owned by Alex ({randomState + 1}%) and Om ({100 - randomState - 1}%) </div> : <div></div>}
 
-        </div>
+      </div>
     </div>
   );
 }
